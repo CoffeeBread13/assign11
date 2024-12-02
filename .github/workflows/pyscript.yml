@@ -1,0 +1,18 @@
+name: Python Workflow for assignment #11
+on: [push]
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python 3.10 
+        uses: actions/setup-python@v3
+        with: 
+          python-version: "3.10"
+
+      - name: Run tests
+        run: |
+          for i in 1 2 3; do
+            python3 find_lowest_number.py test_data/test${i}_input.txt output.txt
+            diff output.txt test_data/test${i}_expected.txt || exit 1
+          done
