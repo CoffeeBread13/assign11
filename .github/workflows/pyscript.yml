@@ -13,6 +13,6 @@ jobs:
 
       - name: Run tests
         run: |
-          python3 find_lowest_number.py test_data/test1_input.txt outputs/output1.txt
-          python3 find_lowest_number.py test_data/test2_input.txt outputs/output2.txt
-          python3 find_lowest_number.py test_data/test3_input.txt outputs/output3.txt
+          python find_lowest_number.py test_data/test1_input.txt outputs/output1.txt
+          python find_lowest_number.py test_data/test2_input.txt outputs/output2.txt
+          python find_lowest_number.py test_data/test3_input.txt outputs/output3.txt
