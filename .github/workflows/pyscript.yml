@@ -1,18 +1,36 @@
 name: Python Workflow for assignment #11
+
 on: [push]
+
 jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
       - name: Set up Python 3.10 
         uses: actions/setup-python@v3
         with: 
           python-version: "3.10"
 
+      - name: Install dependencies
+        run: |
+          # Install any dependencies here, if necessary
+          # pip install --no-cache-dir -r requirements.txt
+          echo "No dependencies to install."
+
       - name: Run tests
         run: |
+          # Clear outputs
+          mkdir -p outputs
           python find_lowest_number.py test_data/test1_input.txt outputs/output1.txt
           python find_lowest_number.py test_data/test2_input.txt outputs/output2.txt
           python find_lowest_number.py test_data/test3_input.txt outputs/output3.txt
+          
+          # Check if outputs match expected results
+          diff outputs/output1.txt test_data/test1_expected.txt
+          diff outputs/output2.txt test_data/test2_expected.txt
+          diff outputs/output3.txt test_data/test3_expected.txt
